@@ -108,7 +108,7 @@ const Product = () => {
 
           <div className="flex flex-col gap-1 mt-5 text-sm text-gray-500">
             <p>100% Original product </p>
-            <p>Free delivery on order above $49</p>
+            <p>Free delivery on order above ₹499</p>
             <p> Easy return and exchange policy within 7 days </p>
           </div>
         </div>
