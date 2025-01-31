@@ -1,3 +1,5 @@
+import { Navigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 import { assets } from '../assets/assets';
 
 const Footer = () => {
@@ -8,6 +10,7 @@ const Footer = () => {
       behavior: 'smooth',
     });
   };
+  const navigate = useNavigate();
 
   return (
     <div className="f">
@@ -27,9 +30,9 @@ const Footer = () => {
             <li onClick={scrollToTop} className="mb-2">
               Home
             </li>
-            <li onClick={scrollToTop} className="mb-2">
-              About Us
-            </li>
+            <li onClick={() => navigate('/about')} className="mb-2 cursor-pointer">
+      About Us
+    </li>
             <li onClick={scrollToTop} className="mb-2">
               Delivery
             </li>
