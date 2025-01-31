@@ -22,7 +22,10 @@ const LatestCollection = () => {
             <Title text1={'LATEST'} text2={'Collection '}/>
             <p className='w-3/4 m-auto text-xs sm:text-sm md-text-base text-gray-600'>
             
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Architecto repudiandae, tempora enim hic aliquam ducimus dignissimos sit fugiat, reprehenderit facilis corporis. Nam enim sit, placeat exercitationem voluptatibus explicabo nostrum provident.
+            Discover the newest arrivals at Forever, where fashion meets elegance! Our latest collection brings you a perfect blend of trendsetting designs, premium quality, and unmatched comfort. Whether you're looking for chic casual wear, sophisticated party outfits, or timeless essentials, we've got something special for everyone.
+
+
+
             
             </p>
         </div>
