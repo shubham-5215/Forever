@@ -26,7 +26,7 @@ const Contact = () => {
         <div className="flex flex-col justify-center items-start gap-4">
           <p className="font-semibold text-altext-gray-600">Our Store</p>
           <p className="text-gray-500">
-            7298 King Lodge
+          SVNIT Campus, Athwa
             <br />
             Surat, Gujarat, India 395007
           </p>
