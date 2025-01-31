@@ -28,14 +28,14 @@ const Contact = () => {
           <p className="text-gray-500">
             7298 King Lodge
             <br />
-            North Elton, Illinois 78154
+            Surat, Gujarat, India 395007
           </p>
 
           <p className="text-gray-800">
-            Tel: <span className="text-gray-500">+1 800 123 1234</span>
+            Tel: <span className="text-gray-500">+91 8292831799</span>
           </p>
           <p className=" text-gray-800">
-            Email: <span className="text-gray-500">admin@forever.com</span>
+            Email: <span className="text-gray-500">shubhamkumarsingh424@gmail.com</span>
           </p>
 
           <p className="text-gray-500">Careers at Forever</p>
