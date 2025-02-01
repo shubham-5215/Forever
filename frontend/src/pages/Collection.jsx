@@ -8,9 +8,17 @@ const Collection = () => {
   const { products, search, showSearch } = useContext(ShopContext);
   const [showFilter, setShowFilter] = useState(false);
   const [filterProducts, setFilterProducts] = useState([]);
+  const [originalProducts, setOriginalProducts] = useState([]); // ✅ Store default order
   const [category, setCategory] = useState([]);
   const [subCategory, setSubCategory] = useState([]);
-  const [sortType, setSortType] = useState('relevant');
+  const [sortType, setSortType] = useState('high-low'); // ✅ Default to "High to Low"
+
+  useEffect(() => {
+    if (products && products.length > 0) {
+      setOriginalProducts([...products]); // ✅ Store original order
+      applyFilter(products); // Apply filter initially
+    }
+  }, [products]);
 
   const toggleCategory = (e) => {
     const value = e.target.value;
@@ -26,10 +34,10 @@ const Collection = () => {
     );
   };
 
-  const applyFilter = () => {
-    if (!products || products.length === 0) return;
+  const applyFilter = (productList) => {
+    if (!productList || productList.length === 0) return;
 
-    let productsCopy = [...products];
+    let productsCopy = [...productList];
 
     if (showSearch && search) {
       productsCopy = productsCopy.filter((item) =>
@@ -49,13 +57,14 @@ const Collection = () => {
       );
     }
 
-    setFilterProducts(productsCopy);
+    // ✅ Apply sorting after filtering
+    sortProducts(productsCopy);
   };
 
-  const sortProducts = () => {
-    if (filterProducts.length === 0) return;
+  const sortProducts = (productsToSort) => {
+    if (productsToSort.length === 0) return;
 
-    let sortedProducts = [...filterProducts];
+    let sortedProducts = [...productsToSort];
 
     switch (sortType) {
       case 'low-high':
@@ -64,20 +73,22 @@ const Collection = () => {
       case 'high-low':
         sortedProducts.sort((a, b) => b.price - a.price);
         break;
+      case 'relevant':
+        sortedProducts = [...originalProducts]; // ✅ Reset to default order
+        break;
       default:
-        applyFilter();
-        return;
+        break;
     }
 
     setFilterProducts(sortedProducts);
   };
 
   useEffect(() => {
-    applyFilter();
-  }, [category, subCategory, search, showSearch, products]);
+    applyFilter(originalProducts); // ✅ Filtering & sorting together on load
+  }, [category, subCategory, search, showSearch]);
 
   useEffect(() => {
-    sortProducts();
+    sortProducts(filterProducts); // ✅ Sort when sortType changes
   }, [sortType]);
 
   return (
@@ -99,16 +110,10 @@ const Collection = () => {
         {/* Category Filter */}
         <div className={`border border-gray-300 pl-5 py-3 mt-6 ${showFilter ? '' : 'hidden'} sm:block`}>
           <p className="mb-3 text-sm font-medium">CATEGORIES</p>
-
           <div className="flex flex-col gap-2 text-sm font-light text-gray-700">
             {['Men', 'Women', 'Kids'].map((cat) => (
               <p key={cat} className="flex gap-2">
-                <input
-                  type="checkbox"
-                  className="w-3"
-                  value={cat}
-                  onChange={toggleCategory}
-                />
+                <input type="checkbox" className="w-3" value={cat} onChange={toggleCategory} />
                 {cat.toUpperCase()}
               </p>
             ))}
@@ -118,16 +123,10 @@ const Collection = () => {
         {/* Subcategory Filter */}
         <div className={`border border-gray-300 pl-5 py-3 my-5 ${showFilter ? '' : 'hidden'} sm:block`}>
           <p className="mb-3 text-sm font-medium">TYPES</p>
-
           <div className="flex flex-col gap-2 text-sm font-light text-gray-700">
             {['Topwear', 'Bottomwear', 'Winterwear'].map((sub) => (
               <p key={sub} className="flex gap-2">
-                <input
-                  type="checkbox"
-                  className="w-3"
-                  value={sub}
-                  onChange={toggleSubCategory}
-                />
+                <input type="checkbox" className="w-3" value={sub} onChange={toggleSubCategory} />
                 {sub}
               </p>
             ))}
@@ -147,9 +146,9 @@ const Collection = () => {
             value={sortType}
             className="border border-gray-300 text-sm px-2"
           >
-            <option value="relevant">Sort by: Relevant</option>
-            <option value="low-high">Sort by: Low to High</option>
             <option value="high-low">Sort by: High to Low</option>
+            <option value="low-high">Sort by: Low to High</option>
+            <option value="relevant">Sort by: Relevant</option>
           </select>
         </div>
 
