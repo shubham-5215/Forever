@@ -19,7 +19,7 @@ const RelatedProducts = ({ category, subCategory }) => {
           product.category === category && product.subCategory === subCategory
       );
 
-      setRelatedProd(productsCopy.slice(0, 5));
+      setRelatedProd(productsCopy.slice(0, 10));
     }
   }, [products, category, subCategory]);
 
