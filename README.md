@@ -77,18 +77,18 @@ In three separate terminal windows, run the start command for each part of the a
     cd backend
     node server.js
     ```
-    *The API should be running on the configured port (e.g., http://localhost:4000).*
+    *The API should be running on the configured port (https://forever-backend-snowy.vercel.app/)*
 
 2.  **Start the Customer Frontend:**
     ```bash
     cd frontend
     npm run dev
     ```
-    *The store will typically open at http://localhost:5173.*
+    *The store will typically open at (https://forever-frontend-theta-coral.vercel.app/)*
 
 3.  **Start the Admin Panel:**
     ```bash
     cd admin
     npm run dev
     ```
-    *The admin panel will typically open at http://localhost:5174.*
+    *The admin panel will typically open at (https://forever-admin-pearl-sigma.vercel.app/list)*
